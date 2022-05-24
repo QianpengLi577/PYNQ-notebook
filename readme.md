@@ -8,7 +8,7 @@
 - 选择镜像文件以及SD所在盘符并烧录
 - 将SD插回开发板，设置开发板启动模式为SD
 
-![](2022-05-24-10-07-00.png)
+![](pic/2022-05-24-10-07-00.png)
 
 - 连接电源、UART、网线直插PC(IP为192.168.2.99)
 - 打开putty以及设备管理器，展开端口列表找到USB端口号：COM*
@@ -66,17 +66,17 @@ Tcl文件的名字需要和bitstream名字相一致，否则pynq在加载overlay
 
 - 在test函数通过设置 **HW_COSIM** 判断自定义函数是否正确。点击 project -> run c simulation完成仿真
 
-![](2022-05-24-11-46-54.png)
+![](pic/2022-05-24-11-46-54.png)
 
-![](2022-05-24-11-46-19.png)
+![](pic/2022-05-24-11-46-19.png)
 
 #### 综合-生成v代码
 
 - 仿真验证结束后(判断自定义函数是否有问题)，可以进行综合。Solution > Run C Synthesis > Active Solution。将会给出综合后的信息以及生成的文件
 
-![](2022-05-24-11-52-45.png)
+![](pic/2022-05-24-11-52-45.png)
 
-![](2022-05-24-11-53-53.png)
+![](pic/2022-05-24-11-53-53.png)
 
 #### C/V联合仿真
 
@@ -84,7 +84,7 @@ Tcl文件的名字需要和bitstream名字相一致，否则pynq在加载overlay
 - 仿真器为 **Vivado Simulator**，语言为 **Verilog** ，Dunp Trace为 **all**
 - 仿真结束会给出仿真报告，并且可以查看波形
 
-![](2022-05-24-12-00-44.png)
+![](pic/2022-05-24-12-00-44.png)
 
 #### ecport RTL
 
@@ -118,19 +118,19 @@ command 'ap_source' returned error code
 - 点击project -> new solution
 - 在solution2中双击源文件，在Directive窗口，点击matrixmul后右键，将会出现对函数顶层模块插入Directive的选项；对顶层进行如下配置
 
-![](2022-05-24-12-29-20.png)
+![](pic/2022-05-24-12-29-20.png)
 
 - 对参数a、b、res和test添加如下directive
 
-![](2022-05-24-12-30-51.png)
+![](pic/2022-05-24-12-30-51.png)
 
 - 对col添加如下约束
 
-![](2022-05-24-12-31-37.png)
+![](pic/2022-05-24-12-31-37.png)
 
 - 上述所有的directives均在**directives.tcl**里
 
-![](2022-05-24-12-33-12.png)
+![](pic/2022-05-24-12-33-12.png)
 
 - 对solution2进行综合，Solution > Run C Synthesis > Active Solution
 - 再export IP
@@ -142,7 +142,7 @@ command 'ap_source' returned error code
 - 将刚刚生成的zip包(solution2)拷贝到Vivado工程的.ip.user_files后解压缩；
 - 添加IP
 
-![](2022-05-24-14-20-54.png)
+![](pic/2022-05-24-14-20-54.png)
 
 - 创建Block Design，并添加ZYNQ7 Processing System IP到Block Design
 
@@ -151,15 +151,15 @@ command 'ap_source' returned error code
 - 点击Run Block Automation，保持默认配置，点击OK；
 - 双击ZYNQ7 Processing System IP，添加HP0接口
 
-![](2022-05-24-14-25-13.png)
+![](pic/2022-05-24-14-25-13.png)
 
 - 例化Matrixmul到Block Design，通过AXI DMA将IP连接到PS端，如下图所示
 
-![](2022-05-24-14-40-50.png)
+![](pic/2022-05-24-14-40-50.png)
 
 - 创建 HDL Wrapper文件，右键design_1，点击create HDL Wrapper
 
-![](2022-05-24-14-42-20.png)
+![](pic/2022-05-24-14-42-20.png)
 
 - 生成 Bitstream，在flow navigator点击generate bitstream。在生成bitstream时，可能会出现以下错误，可以参考[博客](http://t.zoukankan.com/jason20-p-13143253.html)进行处理
 
