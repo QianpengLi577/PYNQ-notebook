@@ -17,6 +17,36 @@
 
 - 传输文件可以打开资源管理器，输入 **\\\pynq\xilinx** 即可连接
 
+### 板卡连接外网
+- win + Q 搜索适配器，点击更多适配器(win11)
+- 找到主机连接的外网，右击此网络 -> 属性 -> 共享 -> 勾选Internet连接 -> 选择板卡以太网
+- 此时主机的pc为192.168.137.1
+- 在主机通过PuTTy连接板卡，输入 ```sudo vim /etc/network/interfaces```
+- 将开发板的IP设置为192.168.137.5，修改如下内容：
+
+```
+auto eth0
+iface eth0 inet static
+address 192.168.137.5 
+netmask 255.255.255.0
+gateway 192.168.137.1
+
+source-directory /etc/network/interfaces.d
+```
+- 重启网卡 ```sudo /etc/init.d/network-manager restart```
+- 然后主机和板卡相互ping，板卡ping baidu.com
+- 如果ping不通，可以修改默认路由
+
+```
+sudo route del default
+sudo route add default gw 192.168.137.1 netmask 0.0.0.0
+```
+- 如果还是ping不通，设置域名解析服务器
+
+```
+echo "nameserver 8.8.8.8" >> /etc/resolv.conf
+```
+
 ### orerlay介绍
 
 overlay是硬件库，是FPGA生成的bit文件在PYNQ的调用，通过pynq来实现调用
