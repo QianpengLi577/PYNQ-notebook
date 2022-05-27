@@ -203,3 +203,12 @@ command 'ap_source' returned error code
 - bit文件在.runs/impl_1文件夹，tcl在自定义的文件夹，将这两个文件复制到其他地方并与顶层名相一致，例如matrixmul.tcl与matrixmul.bit
 
 **之后就可以使用overlay了**
+
+### 可参考的PYNQ项目-Neural network
+
+|项目名|地址|
+|---|---|
+|FINN|https://github.com/Xilinx/finn|
+|BNN|https://github.com/Xilinx/BNN-PYNQ|
+|Softmax|https://github.com/9334swjtu/PYNQ_softmax|
+|Pynq-Accelerator|https://github.com/LeiWang1999/Pynq-Accelerator|
